@@ -1,0 +1,33 @@
+>>>> Variaveis de ambiente
+>> https://docs.microsoft.com/pt-br/aspnet/core/fundamentals/environments?view=aspnetcore-2.1
+>>> SETX
+>> https://ss64.com/nt/setx.html
+>>> [Environment]::SetEnvironmentVariable
+>>
+
+>> no cmd 
+>> ler
+%ASPNETCORE_ENVIRONMENT%
+>> ou
+set ASPNETCORE_ENVIRONMENT
+set ASPNETC
+set connectionStrings:cityInfoDBConnectionString
+
+>> escrever (/m especifica que são variaveis da maquina, se não especificado aplica como variaveis do usuário)
+setx ASPNETCORE_ENVIRONMENT Development /M
+setx connectionStrings:cityInfoDBConnectionString "Server=(localdb)\\\\mssqllocaldb;Database=CityInfoDBPrd;Trusted_Connection=True;" /M
+
+>> Apagar valor
+setx connectionStrings:cityInfoDBConnectionString $null /M
+
+>>>> no PS
+>> escrever
+[Environment]::SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development", "Machine")
+[Environment]::SetEnvironmentVariable("connectionStrings:cityInfoDBConnectionString", "Server=(localdb)\\\\mssqllocaldb;Database=CityInfoDBPrd;Trusted_Connection=True;", "Machine")
+
+>> ler
+$env:connectionStrings:cityInfoDBConnectionString
+$env:ASPNETCORE_ENVIRONMENT
+
+>> Apagar chave
+[Environment]::SetEnvironmentVariable("connectionStrings:cityInfoDBConnectionString", $null, "Machine")

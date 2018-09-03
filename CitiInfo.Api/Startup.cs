@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CityInfo.API.Entities;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -50,6 +52,12 @@ namespace CityInfo.API
             //services.AddScoped    // Uma instancia por requisição
             //services.AddSingleton // Criados somente uma vez ou se vc especifar uma instancia no ConfigureServices for executado 
             //services.AddTransient // Criado sempre que requisitado - util em casos de serviços stateless 
+
+            //Configura o contexto de banco e sua conexão
+            //var connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            //var connectionString = @"Data Source=(localdb)\MSSQLLocalDB;DataBase=CityInfoDB;Trusted_Connection=True";
+            var connectionString = Startup.Configuration["connectionStrings:cityInfoDBConnectionString"];
+            services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,15 +69,15 @@ namespace CityInfo.API
             loggerFactory.AddNLog(); //Extension NLOG
             // Para isso
             //loggerFactory.AddProvider(new NLog.Extensions.Logging.NLogLoggerProvider());
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler();
-            }
+            app.UseDeveloperExceptionPage();
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler();
+            //}
 
             app.UseMvc();
             
