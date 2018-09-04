@@ -61,7 +61,8 @@ namespace CityInfo.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory
+            ,CityInfoContext cityInfoContext)
         {
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
@@ -79,10 +80,12 @@ namespace CityInfo.API
             //    app.UseExceptionHandler();
             //}
 
-            app.UseMvc();
-            
+            cityInfoContext.EnsureSeedDataForContext();
+
             //Show status code pages in the browser
             //app.UseStatusCodePages();
+
+            app.UseMvc();
 
             //app.Run(async (context) =>
             //{
