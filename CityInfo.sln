@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityInfo.API", "CitiInfo.Api\CityInfo.API.csproj", "{7D78D388-E986-4F76-ABB5-57230C013D3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityInfo.API", "CityInfo.Api\CityInfo.API.csproj", "{7D78D388-E986-4F76-ABB5-57230C013D3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
