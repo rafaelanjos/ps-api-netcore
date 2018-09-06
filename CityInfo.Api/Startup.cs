@@ -57,13 +57,15 @@ namespace CityInfo.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory
+        public void Configure(IApplicationBuilder app
+            ,IHostingEnvironment env
+            //,ILoggerFactory loggerFactory
             ,CityInfoContext cityInfoContext)
         {
-            loggerFactory.AddConsole();
-            loggerFactory.AddDebug();
+            //loggerFactory.AddConsole();
+            //loggerFactory.AddDebug();
 
-            loggerFactory.AddNLog(); //Extension NLOG
+            //loggerFactory.AddNLog(); //Extension NLOG
             // Para isso
             //loggerFactory.AddProvider(new NLog.Extensions.Logging.NLogLoggerProvider());
             app.UseDeveloperExceptionPage();

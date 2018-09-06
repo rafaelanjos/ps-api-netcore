@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using NLog.Web;
 
 namespace CityInfo.API
 {
@@ -12,6 +13,7 @@ namespace CityInfo.API
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseNLog()
                 .UseStartup<Startup>();
     }
 }
