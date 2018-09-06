@@ -3,6 +3,7 @@ using CityInfo.API.Models;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CityInfo.API.Controllers
 {
@@ -17,9 +18,9 @@ namespace CityInfo.API.Controllers
         }
 
         [HttpGet()]
-        public IActionResult GetCities()
+        public async Task<IActionResult> GetCities()
         {
-            var cities = _cityInfoRepository.GetCities();
+            var cities = await _cityInfoRepository.GetCitiesAsync();
 
             var result = Mapper.Map<IEnumerable<CityWithoutPointsOfInterestDto>>(cities);
 
@@ -27,9 +28,9 @@ namespace CityInfo.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCity(int id, bool includePointsOfInterest = false)
+        public async Task<IActionResult> GetCity(int id, bool includePointsOfInterest = false)
         {
-            var city = _cityInfoRepository.GetCity(id, includePointsOfInterest);
+            var city = await _cityInfoRepository.GetCityAsync(id, includePointsOfInterest);
 
             if (city == null)
                 return NotFound();
